@@ -9,3 +9,4 @@ class Authentication(object):
     def getAuthParameters(self):
         parameters = {'key':self.key, 'token':self.token}
         return  parameters
+
