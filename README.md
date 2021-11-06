@@ -11,3 +11,8 @@ Wrapper for Trello api, specified for Mako schedule project. Main goal is to imp
 * Sync updates status of tasks in Mako database  
 * Board contains three columns: TODO, DOING and DONE
 * Cards contains data from `mako today` : task, project, subproject, description, time estimate and due data
+
+## Functions
+* `setup_user_token` - initial run: setup token, create board
+* `upload_data` - create new board for day and deletes old if exist
+* `get_data` - gets data for the tasks from the board
