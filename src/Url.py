@@ -1,6 +1,6 @@
 class Url(object):
         def __init__(self):
-            self.url = 'https://api.trello.com/1'
+            self.url = 'https://api.trello.com/1/'
         
         def getBaseUrl(self):
             return self.url
@@ -9,6 +9,12 @@ class Url(object):
             return 'mako-today-board'
     
 
-        def getURLForBoards(self):
-            url = self.getBaseUrl() + '/boards/' + self.getBoadId()
+        def getURLForAllBoards(self):
+            url = self.getBaseUrl() + 'members/me/boards/'
             return url
+
+        def getURLForBoards(self):
+            url = self.getURLForAllBoards() + self.getBoadId()
+            return url
+        
+        

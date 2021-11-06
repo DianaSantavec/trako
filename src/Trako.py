@@ -3,12 +3,10 @@ from InitialRun import *
 class Trako(object):
 
     def __init__(self):
-        #raise NotImplementedError()
-        print ('hi')
+        pass
 
     
     def setupUserToken(self):
-        #raise NotImplementedError()
         init = InitialRun()
         init.setup()
 
