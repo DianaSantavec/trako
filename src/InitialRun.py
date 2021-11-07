@@ -38,7 +38,7 @@ After saving tocker, run this script again to setup board ''')
             board.createMakoBoard()
         else:
             if (board.checkMakoBoard() == 404):
-                board.createMakoBoard()
+                board.createMakoBoard()   
         
         return True
             

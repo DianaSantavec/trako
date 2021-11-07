@@ -13,8 +13,8 @@ class Url(object):
             url = self.getURLForMakoOrganizationCreation() + makoOrganizationName
             return url
 
-        def getURLForMakoBoard(self, boardName):
-            url = self.getURLForAllBoards() + boardName
+        def getURLForMakoBoard(self):
+            url = self.getURLForAllBoards()
             return url
         
         def getURLForCreateMakoBoard(self):
@@ -23,4 +23,16 @@ class Url(object):
 
         def getURLForMakoOrganizationCreation(self):
             url = self.getBaseUrl() + 'organizations/'
+            return url
+        
+        def getURLForMakoCards(self, id):
+            url = self.getBaseUrl() + 'boards/' + id + '/cards'
+            return url
+
+        def getURLForCard(self, cardId):
+            url = self.getBaseUrl() + 'cards/' + cardId
+            return url
+        
+        def getURLForList(self, listId):
+            url = self.getBaseUrl() + 'lists/' + listId
             return url
