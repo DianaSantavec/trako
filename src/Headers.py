@@ -29,7 +29,24 @@ class Header(object):
         header['name'] = name
         return header
 
-    def getHeaderForMakoBoard(self):
+    def getHeaderForMakoBoard(self, boardId):
+        header = self.auth.getAuthParameters()
+        header['Accept'] = 'application/json'
+        header['id'] = boardId
+        return header
+    
+    def getHeaderForMakoCards(self):
         header = self.auth.getAuthParameters()
         header['Accept'] = 'application/json'
         return header
+    
+    def getHeaderForCard(self):
+        header = self.auth.getAuthParameters()
+        header['Accept'] = 'application/json'
+        return header
+
+    def getHeaderForList(self):
+        header = self.auth.getAuthParameters()
+        header['Accept'] = 'application/json'
+        return header
+
