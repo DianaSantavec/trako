@@ -13,12 +13,9 @@ class Trako(object):
     
     def getData(self):
         board = Board()
-        board.getAllCards()
-        #raise NotImplementedError()
-        #board = Board()
-        #data = getDataFromBoard()
+        data = board.getAllCards()        
+        return data
         
-        #return data
         
     
     def uploadData(self):
@@ -26,5 +23,6 @@ class Trako(object):
 
 obj = Trako()
 #obj.setupUserToken()
-obj.getData()
+#obj.getData()
+obj.uploadData()
 sys.exit(0)
