@@ -10,13 +10,12 @@ class InitialRun(object):
     def printMessageWithURL(self):
         print('''To allow Mako to create board, and to get data from the board,
 key must be saved in .secrets/key file and will be valid for one month, or while you disable it
-Key can be get on: https://trello.com/1/authorize?&name=MyPersonalToken&scope=read&response_type=token&key=fcf13eab00317ac32b50020c2ff8ef81
+Key can be get on: https://trello.com/1/authorize?&name=MyPersonalToken&scope=read&scope=write&response_type=token&key=fcf13eab00317ac32b50020c2ff8ef81
 After saving tocker, run this script again to setup board ''')
 
     def setupFileForToken(self):
         if (os.path.exists(self.secretsDir)):
             if (os.path.isfile(self.secretsFile)):
-                if (self.testToken()):
                     return True
         else:
             os.mkdir(self.secretsDir)
@@ -24,22 +23,32 @@ After saving tocker, run this script again to setup board ''')
             file.close()
             self.printMessageWithURL()
             return False
-            
-    def printInvalidToken(self):
-        print('Token is not valid')
-    
+
     def testToken(self):
         board = Board()
-        if (board.getAllBoards() == False):
-            self.printInvalidToken()
+        if (board.checkMakoOrganization() == 401):
             raise ValueError()
+            return False
+        return True
+
+    def initTrello(self):
+        board = Board()
+        if (board.checkMakoOrganization() == 404):
+            board.createMakoWorkspace()
+            board.createMakoBoard()
         else:
-            return True
+            if (board.checkMakoBoard() == 404):
+                board.createMakoBoard()
+        
+        return True
+            
+
     
     def setup(self):
 
-        if (self.setupFileForToken()):
-            self.testToken()
+        if (self.setupFileForToken() == True):
+            if (self.testToken() == True):
+                self.initTrello()
         
         else:
             raise ValueError()
