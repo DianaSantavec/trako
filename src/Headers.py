@@ -62,3 +62,8 @@ class Header(object):
         header = self.auth.getAuthParameters()
         header['Accept'] = 'application/json'
         return header
+
+    def getHeaderForDeleteMakoCards(self):
+        header = self.auth.getAuthParameters()
+        header['Accept'] = 'application/json'
+        return header

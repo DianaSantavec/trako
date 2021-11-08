@@ -181,5 +181,22 @@ class Board(object):
             
             response = requests.request("POST", url, params=header) 
 
-    def deleteOldData():
-        data_array = self.getAllCards()
+    
+    def deleteCard(self, cardId):
+        url = self.accessUrl.getURLForDeleteMakoCards(cardId)
+        header = self.accessHeaders.getHeaderForDeleteMakoCards()
+
+        response = requests.delete(url, params=header)
+
+    
+    def deleteOldData(self):
+        id = self.getBoardId()
+        url = self.accessUrl.getURLForMakoCards(id)
+        header = self.accessHeaders.getHeaderForMakoCards()
+
+        response = requests.get(url, params=header)
+        response_json = response.json()
+        for item in response_json:
+            self.deleteCard(item['id'])
+        
+

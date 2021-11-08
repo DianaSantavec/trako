@@ -44,3 +44,7 @@ class Url(object):
         def getURLForAllLists(self, boadId):
             url = self.getBaseUrl() + 'boards/' + boadId + '/lists'
             return url
+        
+        def getURLForDeleteMakoCards(self, cardId):
+            url = self.getBaseUrl() + 'cards/' + cardId
+            return url
