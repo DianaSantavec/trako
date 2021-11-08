@@ -147,3 +147,39 @@ class Board(object):
             data_array.append(self.getCardInfo(card['id']))
 
         return data_array
+
+    def get_status_id(self):
+        """
+        get every lsit and find the one with the correct name
+        UPDATE can be to save all lists with their ID in data structer
+        """
+        boardId = self.getBoardId()
+        url = self.accessUrl.getURLForAllLists(boardId)
+        header = self.accessHeaders.getHeaderForAllLists()
+
+        response = requests.get(url, params=header)
+        response_json = response.json()
+        
+        for oneList in response_json:
+            if (oneList['name'] == 'To Do'):
+                return oneList['id']
+        return -1
+
+    
+    def uploadToBoard(self, listOfTasks):
+        url = self.accessUrl.getURLForCardCreation()
+        
+        
+        for element in listOfTasks:
+            
+            name = element.description + '-' + element.work_time
+            description = element.project + '\n' + element.subproject + '\n' + element.time_estimate
+            due_date = element.due_date
+            #datetime.datetime.strptime(element.due_date, '%Y-%m-%d')
+            listId = self.get_status_id()
+            header = self.accessHeaders.getHeaderForCardCreation(name, description, due_date, listId)
+            
+            response = requests.request("POST", url, params=header) 
+
+    def deleteOldData():
+        data_array = self.getAllCards()

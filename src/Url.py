@@ -36,3 +36,11 @@ class Url(object):
         def getURLForList(self, listId):
             url = self.getBaseUrl() + 'lists/' + listId
             return url
+
+        def getURLForCardCreation(self):
+            url = self.getBaseUrl() + 'cards/'
+            return url
+        
+        def getURLForAllLists(self, boadId):
+            url = self.getBaseUrl() + 'boards/' + boadId + '/lists'
+            return url

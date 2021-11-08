@@ -18,11 +18,19 @@ class Trako(object):
         
         
     
-    def uploadData(self):
-        raise NotImplementedError()
+    def uploadData(self,listOfTasks):
+        """
+        expects list of Data objects
+        """
+        board = Board()
+        board.delete()
+        board.uploadToBoard(listOfTasks)
 
 obj = Trako()
 #obj.setupUserToken()
-#obj.getData()
-obj.uploadData()
+data = obj.getData()
+for item in data:
+    item.time_estimate = '9999'
+
+obj.uploadData(data)
 sys.exit(0)
