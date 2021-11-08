@@ -25,12 +25,3 @@ class Trako(object):
         board = Board()
         board.deleteOldData()
         board.uploadToBoard(listOfTasks)
-
-obj = Trako()
-#obj.setupUserToken()
-data = obj.getData()
-for item in data:
-    item.time_estimate = '1'
-
-obj.uploadData(data)
-sys.exit(0)
