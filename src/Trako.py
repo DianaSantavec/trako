@@ -13,18 +13,15 @@ class Trako(object):
     
     def getData(self):
         board = Board()
-        board.getAllCards()
-        #raise NotImplementedError()
-        #board = Board()
-        #data = getDataFromBoard()
+        data = board.getAllCards()        
+        return data
         
-        #return data
         
     
-    def uploadData(self):
-        raise NotImplementedError()
-
-obj = Trako()
-#obj.setupUserToken()
-obj.getData()
-sys.exit(0)
+    def uploadData(self,listOfTasks):
+        """
+        expects list of Data objects
+        """
+        board = Board()
+        board.deleteOldData()
+        board.uploadToBoard(listOfTasks)

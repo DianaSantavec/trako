@@ -49,4 +49,21 @@ class Header(object):
         header = self.auth.getAuthParameters()
         header['Accept'] = 'application/json'
         return header
+    
+    def getHeaderForCardCreation(self, name, description, due_date, listId):
+        header = self.auth.getAuthParameters()
+        header['name'] = name
+        header['desc'] = description
+        header['due'] = due_date
+        header['idList'] = listId
+        return header
 
+    def getHeaderForAllLists(self):
+        header = self.auth.getAuthParameters()
+        header['Accept'] = 'application/json'
+        return header
+
+    def getHeaderForDeleteMakoCards(self):
+        header = self.auth.getAuthParameters()
+        header['Accept'] = 'application/json'
+        return header
